@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\UserController;
+use App\Models\Device;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,7 @@ Route::get('/', function () {
 
 Route::group([ "middleware" => ['auth:sanctum', 'verified'] ], function() {
     Route::view('/dashboard', "dashboard")->name('dashboard');
+    Route::resource('/devices', DeviceController::class);
 
     Route::get('/user', [ UserController::class, "index_view" ])->name('user');
     Route::view('/user/new', "pages.user.user-new")->name('user.new');
